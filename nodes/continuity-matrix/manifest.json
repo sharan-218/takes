@@ -1,0 +1,94 @@
+{
+  "id": "continuity-matrix",
+  "name": "Continuity Matrix",
+  "version": "0.1.0",
+  "kind": "composite",
+  "category": "creative-direction",
+  "description": "Lock a cast (face + product + setting) and emit a deterministic batch of N on-brand ad variants that share identity, wardrobe, and lighting across every cut.",
+  "author": "Continuity Matrix contributors",
+  "license": "MIT",
+  "studio": {
+    "minStudioVersion": "1.4.0",
+    "sidebar": {
+      "group": "creative-direction",
+      "icon": "grid"
+    },
+    "inputs": [
+      {
+        "id": "face",
+        "label": "Face",
+        "type": "image-ref",
+        "required": true,
+        "accepts": ["actor-library", "upload"]
+      },
+      {
+        "id": "product",
+        "label": "Product",
+        "type": "image-ref",
+        "required": true,
+        "accepts": ["product-library", "upload"]
+      },
+      {
+        "id": "setting",
+        "label": "Setting",
+        "type": "setting-id",
+        "required": true,
+        "options": ["kitchen", "street", "studio", "gym", "office"]
+      }
+    ],
+    "params": [
+      {
+        "id": "hooks",
+        "type": "string-list",
+        "label": "Hooks",
+        "default": ["Stop scrolling.", "Worth every rupee.", "It just works."]
+      },
+      {
+        "id": "angles",
+        "type": "enum-list",
+        "label": "Angles",
+        "options": ["unboxing", "testimonial", "demo", "problem-solution", "pov", "before-after", "comparison"]
+      },
+      {
+        "id": "pacing",
+        "type": "enum-list",
+        "label": "Pacing",
+        "options": ["fast-cut", "talking-head", "cinematic", "asmr"]
+      },
+      {
+        "id": "formats",
+        "type": "enum-list",
+        "label": "Formats",
+        "options": ["9x16", "1x1", "16x9", "6s", "15s", "30s"]
+      },
+      {
+        "id": "maxVariants",
+        "type": "number",
+        "label": "Max variants",
+        "min": 1,
+        "max": 50,
+        "default": 18
+      }
+    ],
+    "outputs": [
+      {
+        "id": "variants",
+        "type": "variant-list",
+        "count": "{{maxVariants}}",
+        "fields": ["videoUrl", "overlayText", "caption", "fullPrompt", "hookScore", "fitScore", "compositeScore"]
+      }
+    ]
+  },
+  "compute": {
+    "engine": "deterministic",
+    "promptAssembly": "lib/orchestrator/orchestrator.ts#buildRenderPlan",
+    "scoring": "lib/scoring/hook-scoring.ts + lib/scoring/fit-score.ts",
+    "compositor": "lib/compositor/compositor.ts"
+  },
+  "liveMode": {
+    "enabled": false,
+    "envKey": "REPLICATE_API_TOKEN",
+    "modelRouter": "lib/orchestrator/model-router.ts",
+    "endpoint": "/api/generate"
+  }
+}

@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body {
+  background: #0a0a0c;
+  color: #f5f5f7;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+
+::selection { background: #ff5b1f; color: #0a0a0c; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #0a0a0c; }
+::-webkit-scrollbar-thumb { background: #22222a; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #2c2c36; }
+
+.grid-noise {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.btn {
+  @apply inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium border border-line bg-panel2 hover:bg-line transition;
+}
+.btn-primary {
+  @apply inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold bg-accent text-black hover:bg-accent2 transition disabled:opacity-50 disabled:cursor-not-allowed;
+}
+.btn-ghost {
+  @apply inline-flex items-center gap-2 rounded-md px-2.5 py-1 text-xs text-ink2 hover:text-ink hover:bg-line transition;
+}
+.chip {
+  @apply inline-flex items-center gap-1 rounded-full border border-line bg-panel2 px-2.5 py-1 text-xs text-ink2;
+}
+.chip-on {
+  @apply inline-flex items-center gap-1 rounded-full border border-accent/60 bg-accent/10 px-2.5 py-1 text-xs text-accent2;
+}
+.card {
+  @apply rounded-lg border border-line bg-panel shadow-soft;
+}
+.label {
+  @apply text-[10px] uppercase tracking-[0.18em] text-ink3 font-medium;
+}
