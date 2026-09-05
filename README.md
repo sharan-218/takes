@@ -1,4 +1,4 @@
-# Continuity Matrix
+# Takes
 
 > **A Creative Studio power-tool for [HexCoded](https://hexcoded.ai).** Pick one actor, one product, one setting. Get 50 on-brand ad variants with the same face, outfit, and product in every single cut.
 
@@ -132,7 +132,6 @@ I read the email and read the product. Three signals told me what to build:
 - **Tailwind** for styling, custom design tokens (no shadcn — built to feel like part of HexCoded's own chrome)
 - **zustand** for client state
 - **@ffmpeg/ffmpeg (WASM)** was considered and removed — compositor runs natively in the browser via canvas + smart-crop, so this deploys to Vercel free tier with zero infra
-- **CC0 hero library** from Pixabay (see [CREDITS.md](./CREDITS.md))
 - **Live Mode API** route at `/api/generate` ready to wire to Replicate / Fal / any provider
 
 ## Running it
